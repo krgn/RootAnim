@@ -13,4 +13,9 @@ void WindowKill();
 double WindowTime();
 double WindowDTime();
 
+unsigned WindowFrame();
+
+int WindowPointerX();
+int WindowPointerY();
+
 void WindowLoop(void (*)());

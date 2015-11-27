@@ -49,6 +49,9 @@ module Graphics.UI.GLWindow
     -- * Window state query
     , time
     , dtime
+    , frame
+    , pointer_x
+    , pointer_y
     -- * Loop
     , loop
     ) where
@@ -73,6 +76,21 @@ foreign import ccall unsafe "WindowDTime"
   c_dtime :: IO (CDouble)
 dtime :: IO (Double)
 dtime = realToFrac <$> c_dtime
+
+foreign import ccall unsafe "WindowFrame" 
+  c_frame :: IO (CUInt)
+frame :: IO (Integer)
+frame = fromIntegral <$> c_frame
+
+foreign import ccall unsafe "WindowPointerX" 
+  c_pointerx :: IO (CInt)
+pointer_x :: IO Int
+pointer_x = fromIntegral <$> c_pointerx
+
+foreign import ccall unsafe "WindowPointerY" 
+  c_pointery :: IO (CInt)
+pointer_y :: IO Int
+pointer_y = fromIntegral <$> c_pointery
 
 type LoopFunc = IO ()
 foreign import ccall "WindowLoop" 
