@@ -1,7 +1,7 @@
 # RootAnim
 
-An evening-spanning venture into particular aspects of Haskell, particularly the
-FFI and OpenGL.
+An evening-spanning venture into some aspects of Haskell I mean to explore for a while, 
+particularly the FFI and OpenGL.
 
 FFI code is adapted from
 [Graphics.UI.GL](http://hackage.haskell.org/package/GLHUI-1.1.0/docs/Graphics-UI-GLWindow.html),
