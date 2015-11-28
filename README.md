@@ -1,6 +1,6 @@
 # RootAnim
 
-An evening-spanning venture into some aspects of Haskell I mean to explore for a while, 
+An evening-spanning venture into some aspects of Haskell I meant to explore for a while, 
 particularly the FFI and OpenGL.
 
 FFI code is adapted from
@@ -8,5 +8,5 @@ FFI code is adapted from
 opening the XDefaultRootWindow instead of creating a new, framed one.
 
 The animation is basically a cheesy little WinAmp swoosh running across the
-entire X11 root window.
+entire X11 root window. :)
 
