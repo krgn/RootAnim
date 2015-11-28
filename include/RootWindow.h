@@ -16,6 +16,6 @@ double WindowDTime();
 unsigned WindowFrame();
 
 int WindowPointerX();
-int WindowPointerX();
+int WindowPointerY();
 
 void WindowLoop(void (*)());
