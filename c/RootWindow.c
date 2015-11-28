@@ -72,6 +72,10 @@ void WindowLoop(void (*Loop)())
          &window_returned, &root_x, &root_y, &win_x, &win_y,
          &mask_return);
 
+
+    glEnable (GL_BLEND);
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		Loop();
 		glXSwapBuffers(display, window);
 		frame++;
