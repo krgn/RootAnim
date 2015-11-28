@@ -6,6 +6,20 @@ import Foreign.C.Types
 import Graphics.Rendering.OpenGL                                           
 import qualified Graphics.UI.GLWindow as Window                            
 
+thing :: forall t a b b1 b2 b3.
+        (Fractional a, Fractional b, Fractional b1, Fractional b2,
+         Fractional b3, Real a) =>
+        (b -> CFloat)
+        -> (b1 -> CFloat)
+        -> (b2 -> CFloat)
+        -> (b3 -> CFloat)
+        -> (t -> t -> CFloat)
+        -> (t -> t -> CFloat)
+        -> (t -> t -> CFloat)
+        -> (t -> t -> CFloat)
+        -> a
+        -> t
+        -> IO ()
 thing pr1 pr2 pr3 pr4 op1 op2 op3 op4 t fac = do
   (x :: Int) <- Window.pointer_x
   (y :: Int) <- Window.pointer_y
@@ -29,15 +43,10 @@ thing pr1 pr2 pr3 pr4 op1 op2 op3 op4 t fac = do
       vertex (Vertex2 x1 y2)
 
                                                                            
+myLoop :: IO ()
 myLoop = do
   clear [ColorBuffer]                                            
-  -- x1 <- Window.pointer_x
-  -- y1 <- Window.pointer_y
-
-  -- let x2 = x1 + 50
-  -- let y2 = y1 + 50
   t <- Window.time
-
   mapM_ (thing sin cos tan atan  (+) (+) (+) (+) t) [-0.9, -0.8, -0.7, -0.6, -0.5 -0.4, -0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
   mapM_ (thing cos sin atan tan  (+) (+) (+) (+) t) [-1.9, -0.8, -0.7, -0.6, -0.5 -0.4, -0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1.9]
   mapM_ (thing tan sin cos atan  (-) (-) (-) (-) t) [-1.9, -0.8, -0.7, -0.6, -0.5 -0.4, -0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1.9]
@@ -45,6 +54,8 @@ myLoop = do
   mapM_ (thing sin cos  tan atan (*) (*) (*) (*) t) [-1.9, -0.8, -0.7, -0.6, -0.5 -0.4, -0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1.9]
   mapM_ (thing sin tan atan cos  (*) (*) (*) (*) t) [-1.9, -0.8, -0.7, -0.6, -0.5 -0.4, -0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1.9]
 
-main = do Window.init 3 2 -- initializes a OpenGL 3.2 context              
-          Window.loop myLoop -- stops when the ESC key is pressed          
-          Window.kill -- removes the window when the loop stops
+main :: IO ()
+main = do
+  _ <- Window.init 3 2 -- initializes a OpenGL 3.2 context              
+  Window.loop myLoop -- stops when the ESC key is pressed          
+  Window.kill -- removes the window when the loop stops
